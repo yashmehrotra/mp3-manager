@@ -34,7 +34,7 @@ class Trial(object):
 music_path = '/home/yashmehrotra/Music/Music/'
 os.chdir(music_path)
 current_directory = commands.getoutput('pwd')
-mp3_list = commands.getoutput('ls -R | grep ".mp3" ').split('\n') # Finding the write bash command took 30 mins , it isnt as easy as it seems
+mp3_list = commands.getoutput('ls -R | grep ".mp3" ').split('\n') # Finding the right bash command took 30 mins , it isnt as easy as it seems
 
 #List of all the music files in the given directory
 # Be a true pythonista and do not use this -- edit - fixed i am a true pythonista \n Me Gusta (Why did that troll went out of fashion)
