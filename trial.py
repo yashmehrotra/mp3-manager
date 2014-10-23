@@ -21,7 +21,7 @@ class Trial(object):
         self.message = 'is it a constructor'
 
     def show_details(self, audio_file):
-        print "Artist name is " + audio_file.tag.artist
+        print "Artist name is %s" % (audio_file.tag.artist)
 
 # Below Link will be useful for images
 # http://tuxpool.blogspot.in/2013/02/how-to-store-images-in-mp3-files-using.html
@@ -47,6 +47,7 @@ user_choice = int(raw_input())
 if user_choice != -1:
     x = mp3_list[user_choice-1]
     str1 = 'find ' + current_directory + ' -name "' + x + '*"'
+    str1 = 'find %s -name "%s*" ' % (current_directory, x)
     # Improve fucking str1 , have u ever heard of string formatting asshole
     # Also finding this command took a lot of time
     x = commands.getoutput(str1)
