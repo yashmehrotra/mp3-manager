@@ -4,15 +4,14 @@ import eyed3
 
 # Changing string to unicode
 
-
 def str_uni(string):
     unicode = unicode(string, 'utf-8')
     return unicode
 
-
-def addslashes(s):
-    s = s.replace(' ', '\ ').replace("'", "\'").replace('"', '\"')
-    return s
+# Currently not in use , hence commented
+# def addslashes(s):
+#    s = s.replace(' ', '\ ').replace("'", "\'").replace('"', '\"')
+#    return s
 
 # I used a class here
 # This is pretty surprising since I suck at OOPS
@@ -28,6 +27,20 @@ class Trial(object):
 
     def show_details(self, audio_file):
         print "Artist name is %s" % (audio_file.tag.artist)
+        print "Album name is %s" % (audio_file.tag.album)
+        print "Title is %s" % (audio_file.tag.title)
+
+    def change_details(self,title=None,Album=None,Artist=None,Track_num=None):
+        if title:
+            audio_file.tag.title = str_uni(title)
+        
+        if Album:
+            audio_file.tag.album = str_uni(Album)
+
+        if Artist:
+            audio_file.tag.album = str_uni(Artist)
+
+        audio_file.tag.save()
 
 # Below Link will be useful for images
 # http://tuxpool.blogspot.in/2013/02/how-to-store-images-in-mp3-files-using.html
@@ -54,9 +67,10 @@ print "Please enter the song no. you want to edit,press -1 to exit"
 user_choice = int(raw_input())
 if user_choice != -1:
     x = mp3_list[user_choice - 1]
-    str1 = 'find ' + current_directory + ' -name "' + x + '*"'
-    str1 = 'find %s -name "%s*" ' % (current_directory, x)
-    # Improve fucking str1 , have u ever heard of string formatting asshole
+    # str1 = 'find ' + current_directory + ' -name "' + x + '*"'
+    # str1 = 'find %s -name "%s*" ' % (current_directory, x)
+    str1 = 'find {0} -name "{1}*" '.format(current_directory, x)
+    # The following comment is no more valid - Improve fucking str1 , have u ever heard of string formatting asshole
     # Also finding this command took a lot of time
     x = commands.getoutput(str1)
     print x
